@@ -1,0 +1,19 @@
+{
+  "app_name":"基金爬虫",
+  "layout":[
+    {
+      "header":"导航",
+      "items":[
+        {"title":"基金", "path":"B", "description":"基金", "icon":"fa fa-list"},
+        {"title":"股票查询", "path":"B", "description":"股票查询", "icon":"fa fa-line-chart"},
+        {"title":"基金公司", "path":"F", "description":"基金公司", "icon":"fa fa-building"}
+      ]
+    },
+    {
+      "header":"设置",
+      "items":[
+        {"title":"爬虫设置", "path":"B", "description":"爬虫设置", "icon":"fa fa-wrench"}
+      ]
+    }
+  ]
+}

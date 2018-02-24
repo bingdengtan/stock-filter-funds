@@ -20,16 +20,16 @@
       "prefix": "app",
       "styles": [
         "styles.scss",
-        "../node_modules/_bootstrap@3.3.7@bootstrap/dist/css/bootstrap.min.css",
-        "../node_modules/_font-awesome@4.7.0@font-awesome/css/font-awesome.min.css",
-        "../node_modules/_ionicons@3.0.0@ionicons/dist/css/ionicons.min.css",
-        "../node_modules/_admin-lte@2.3.11@admin-lte/dist/css/AdminLTE.min.css",
-        "../node_modules/_admin-lte@2.3.11@admin-lte/dist/css/skins/_all-skins.min.css"
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/font-awesome/css/font-awesome.min.css",
+        "../node_modules/ionicons/dist/css/ionicons.min.css",
+        "../node_modules/admin-lte/dist/css/AdminLTE.min.css",
+        "../node_modules/admin-lte/dist/css/skins/_all-skins.min.css"
       ],
       "scripts": [
-        "../node_modules/_jquery@3.2.1@jquery/dist/jquery.min.js",
-        "../node_modules/_bootstrap@3.3.7@bootstrap/dist/js/bootstrap.min.js",
-        "../node_modules/_admin-lte@2.3.11@admin-lte/dist/js/app.min.js"
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../node_modules/admin-lte/dist/js/app.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

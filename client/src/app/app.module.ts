@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './router/app.routing';
 import { AppComponent } from './app.component';
@@ -10,6 +10,7 @@ import { AppFooterComponent } from './component/app-footer/app-footer.component'
 import { AppLeftSideComponent } from './component/app-left-side/app-left-side.component';
 import { AppControlSidebarComponent } from './component/app-control-sidebar/app-control-sidebar.component';
 
+import { CoreService } from './services/core.service'
 
 @NgModule({
   declarations: [
@@ -21,10 +22,13 @@ import { AppControlSidebarComponent } from './component/app-control-sidebar/app-
     AppControlSidebarComponent
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    CoreService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
