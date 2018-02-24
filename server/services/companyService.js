@@ -1,11 +1,8 @@
 var Company = require('../models/company')
 var dbHelper = require('../utils/dbHelper')
 
-exports.list = function(callback){
-    var page = 1
-    return dbHelper.pageQuery(page, 11, Company, '', {}, {
-        name_ping_yin: 1
-    },callback)
+exports.list = function(query, pager, callback){
+    return dbHelper.pageQuery(pager.pageNumber, pager.pageSize, Company, '', query, pager.sort, callback)
 }
 
 exports.create = function(req, res){

@@ -1,7 +1,12 @@
+var pageBean = require('../utils/pageBean')
 var companyService = require("../services/companyService")
 
 exports.list = function(req, res){
-    companyService.list(function(err, results){
+    var query = {};
+    var pager = pageBean.pager;
+    pager.sort = {"name_ping_yin":1}
+    
+    companyService.list(query, pager, function(err, results){
         if(err){
             console.log(err)
         }else{
