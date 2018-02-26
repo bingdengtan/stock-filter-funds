@@ -10,7 +10,12 @@ import { AppFooterComponent } from './component/app-footer/app-footer.component'
 import { AppLeftSideComponent } from './component/app-left-side/app-left-side.component';
 import { AppControlSidebarComponent } from './component/app-control-sidebar/app-control-sidebar.component';
 
-import { CoreService } from './services/core.service'
+import { CompanyService } from './services/companyService';
+import { CoreService } from './services/core.service';
+import { CoreUtils } from './utils/core.utils';
+import { FundComponent } from './pages/fund/fund.component';
+import { StockComponent } from './pages/stock/stock.component';
+import { GridComponent } from './component/grid/grid.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +24,10 @@ import { CoreService } from './services/core.service'
     AppHeaderComponent,
     AppFooterComponent,
     AppLeftSideComponent,
-    AppControlSidebarComponent
+    AppControlSidebarComponent,
+    FundComponent,
+    StockComponent,
+    GridComponent
   ],
   imports: [
     HttpModule,
@@ -27,7 +35,9 @@ import { CoreService } from './services/core.service'
     AppRoutingModule
   ],
   providers: [
-    CoreService
+    CompanyService,
+    CoreService,
+    CoreUtils
   ],
   bootstrap: [AppComponent]
 })

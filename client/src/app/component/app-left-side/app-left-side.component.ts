@@ -12,7 +12,7 @@ export class AppLeftSideComponent implements OnInit {
   constructor(public coreService: CoreService) { }
 
   ngOnInit() {
-    this.coreService.getAppConfig('layout').then(response => {
+    this.coreService.getLayoutConfig().then(response => {
       this.menus = response;
     }).catch( e => {
       console.log(e);

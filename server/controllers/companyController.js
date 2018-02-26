@@ -1,11 +1,9 @@
 var pageBean = require('../utils/pageBean')
 var companyService = require("../services/companyService")
 
-exports.list = function(req, res){
-    var query = {};
-    var pager = pageBean.pager;
-    pager.sort = {"name_ping_yin":1}
-    
+exports.list = function(req, res, next){
+    let query = {};
+    let pager = pageBean.pagerFromRequest(req);  
     companyService.list(query, pager, function(err, results){
         if(err){
             console.log(err)

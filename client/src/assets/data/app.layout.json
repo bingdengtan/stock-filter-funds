@@ -1,0 +1,18 @@
+{
+    "layout":[
+        {
+          "header":"导航",
+          "items":[
+            {"title":"基金公司", "path":"company", "description":"基金公司", "icon":"fa fa-building"}, 
+            {"title":"基金", "path":"fund", "description":"基金", "icon":"fa fa-list"},
+            {"title":"股票查询", "path":"stock", "description":"股票查询", "icon":"fa fa-line-chart"}
+          ]
+        },
+        {
+          "header":"设置",
+          "items":[
+            {"title":"爬虫设置", "path":"spider", "description":"爬虫设置", "icon":"fa fa-wrench"}
+          ]
+        }
+    ]
+}

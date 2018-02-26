@@ -11,5 +11,6 @@ export class AppComponent {
   constructor(public coreService: CoreService) { }
 
   ngOnInit(): void {
+    
   }
 }

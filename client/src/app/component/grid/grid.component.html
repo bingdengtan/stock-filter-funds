@@ -1,0 +1,48 @@
+<div class="box">
+  <div class="box-body">
+    <div class="row">
+      
+    </div>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th [hidden] = "!showIndex">{{indexTitle}}</th>
+          <th *ngFor="let item of columns">{{item.title}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of gridRows; let i=index">
+          <td [hidden] = "!showIndex">{{i+1}}</td>
+          <td *ngFor="let column of columns">{{getColumnValue(item, column)}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row grid-footer">
+      <div class="col-sm-5"><div>{{pageInfo}}</div></div>
+      <div class="col-sm-7">
+        <div>
+          <ul class="pagination">
+            <li class="paginate_button" [ngClass]="!pager.enableFirst?'disabled':''">
+              <a href="#" (click)="loadGrid(1);false"><i class="fa fa-angle-double-left"></i></a>
+            </li>
+            <li class="paginate_button" [ngClass]="!pager.enablePrevious?'disabled':''">
+                <a href="#" (click)="loadGrid(grid.pageNumber - 1);false"><i class="fa fa-angle-left"></i></a>
+            </li>
+            <li class="paginate_button" [ngClass]="grid.pageNumber==item?'active':''" ng-class="active" *ngFor="let item of pager.curPages">
+                <a href="#" (click)="loadGrid(item);false">{{item}}</a>
+            </li>  
+            <li class="paginate_button" *ngIf="pager.showNextPages">
+                <a href="#" (click)="loadMorePages();false"><i class="fa fa-ellipsis-h"></i></a>
+            </li>             
+            <li class="paginate_button" [ngClass]="!pager.enableNext?'disabled':''">
+                <a href="#" (click)="loadGrid(grid.pageNumber + 1);false"><i class="fa fa-angle-right"></i></a>
+            </li>                     
+            <li class="paginate_button" [ngClass]="!pager.enableLast?'disabled':''">
+                <a href="#" (click)="loadGrid(grid.pageCount);false"><i class="fa fa-angle-double-right"></i></a>
+            </li>                        
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,21 +1,16 @@
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>
-      Page Header
-      <small>Optional description</small>
-    </h1>
+    <h1>{{title}}</h1>
     <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-      <li class="active">Here</li>
+      <li><a routerLink="/"><i class="fa fa-dashboard"></i>主页</a></li>
+      <li class="active">{{title}}</li>
     </ol>
   </section>
 
   <!-- Main content -->
   <section class="content">
-
-    
-
+    <app-grid [columns]="gridColumns" [showIndex]="true" [indexTitle]="'序号'" [resetUrl]="resetUrl" [sortBy]="'name_ping_yin'" [orderBy]="'asc'"></app-grid>
   </section>
   <!-- /.content -->
 </div>
