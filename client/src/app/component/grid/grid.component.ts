@@ -13,8 +13,10 @@ export class GridComponent implements OnInit {
   @Input() indexTitle: String = '序号';
   @Input() resetUrl: string;
   @Input() pageSize = 10;
+  @Input() pageSizes = [10, 20, 50, 100];
   @Input() sortBy = '';
   @Input() orderBy = 'asc';
+  @Input() FTSearch = {show: false, placeholder: '搜索'};
 
   gridRows: Array<any> = new Array();
   grid: any;
@@ -70,6 +72,10 @@ export class GridComponent implements OnInit {
       });
   }
 
+  ftSearch(query): void {
+    console.log(query);
+  }
+
   loadMorePages(): void {
     this.loadGrid(Math.ceil(this.grid.pageNumber / this.pages) * this.pages + 1);
   }
@@ -103,5 +109,39 @@ export class GridComponent implements OnInit {
       showNextPages: Math.ceil(this.grid.pageNumber / this.pages) * this.pages < this.grid.pageCount,
       curPages: curPages
     };
+  }
+
+  getTHClass(th): string {
+    let thClass = '';
+    if (th.sort.enable) {
+      thClass = 'sorting';
+      let _sortBy = th.sort.sortBy && th.sort.sortBy !== '' ? th.sort.sortBy : th.filedName;
+      if (_sortBy === this.sortBy) {
+        thClass = thClass + '_' + (this.orderBy === 'asc' ? 'asc' : 'desc');
+      }
+    }
+    return thClass;
+  }
+
+  sortColumn(th): void {
+    if (th.sort.enable) {
+      let _sortBy = th.sort.sortBy && th.sort.sortBy !== '' ? th.sort.sortBy : th.filedName;
+      if (this.sortBy !== _sortBy) {
+        this.orderBy = 'asc';
+      }else {
+        this.orderBy = this.orderBy === 'asc' ? 'desc' : 'asc';
+      }
+      this.sortBy = _sortBy;
+      this.loadGrid(1);
+    }
+  }
+
+  showColumns(column): void {
+    column.display = !column.display;
+  }
+
+  changePageSize(size): void {
+    this.pageSize = size;
+    this.loadGrid(1);
   }
 }

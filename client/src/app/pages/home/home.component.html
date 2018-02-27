@@ -10,7 +10,18 @@
 
   <!-- Main content -->
   <section class="content">
-    <app-grid [columns]="gridColumns" [showIndex]="true" [indexTitle]="'序号'" [resetUrl]="resetUrl" [sortBy]="'name_ping_yin'" [orderBy]="'asc'"></app-grid>
+    <app-grid 
+      [columns]="gridColumns" 
+      [showIndex]="true" 
+      [indexTitle]="'序号'" 
+      [pageSize]=10 
+      [pageSizes]="[10,20,50,100]" 
+      [resetUrl]="resetUrl" 
+      [sortBy]="'name_ping_yin'" 
+      [orderBy]="'asc'"
+      [FTSearch]="{'show': true, 'placeholder': '搜索'}"
+    >
+    </app-grid>
   </section>
   <!-- /.content -->
 </div>

@@ -1,22 +1,58 @@
 <div class="box">
   <div class="box-body">
-    <div class="row">
-      
+    <div class="row actionBar" style="text-align:right;margin:0px 10px 10px 10px;">
+      <div class="actions btn-group pull-right">
+        <!-- Refresh button -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-default btn-flat" (click)="loadGrid(1)">
+            <i class="fa fa-refresh"></i>
+          </button>
+        </div>
+        <!-- Page size dropdown action -->
+        <div class="dropdown btn-group">
+          <button type="button" class="btn btn-default" data-toggle="dropdown">
+            {{pageSize}}<i class="fa fa-caret-down" style="margin-left:5px;"></i>
+          </button>
+          <ul class="dropdown-menu pull-right">
+            <li *ngFor="let item of pageSizes" (click)="changePageSize(item);false"><a href="#">{{item}}</a></li>
+          </ul>
+        </div>
+        <!-- Columns display/hidden -->
+        <div class="dropdown btn-group">
+          <button type="button" class="btn btn-default" data-toggle="dropdown">
+            <i class="fa fa-th-list"></i><i class="fa fa-caret-down" style="margin-left:5px;"></i>
+          </button>
+          <ul class="dropdown-menu pull-right" style="padding:10px;">
+            <li *ngFor="let item of columns">
+              <label class="dropdown-item">
+                <input type="checkbox" [checked]="item.display?'checked':''" (click)="showColumns(item)" style="margin-right:5px;"/>{{item.title}}
+              </label>
+            </li>
+          </ul>
+        </div>        
+      </div>
+      <!-- Search input text -->
+      <div class="input-group col-md-3 col-sm-3 pull-right" style="margin-right:20px;" *ngIf="FTSearch.show">
+        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+        <input type="text" #searchBox (keyup)="ftSearch(searchBox.value)" class="form-control" placeholder="{{FTSearch.placeholder}}" />
+      </div>
     </div>
+    <!-- Grid -->
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th [hidden] = "!showIndex">{{indexTitle}}</th>
-          <th *ngFor="let item of columns">{{item.title}}</th>
+          <th [hidden] = "!showIndex" style="min-width:50px;max-width:50px;">{{indexTitle}}</th>
+          <th *ngFor="let item of columns" [hidden]="!item.display" [ngClass]="getTHClass(item)" [ngStyle]="{'width':item.width}" (click)="sortColumn(item)">{{item.title}}</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of gridRows; let i=index">
-          <td [hidden] = "!showIndex">{{i+1}}</td>
-          <td *ngFor="let column of columns">{{getColumnValue(item, column)}}</td>
+          <td [hidden] = "!showIndex" style="min-width:50px;max-width:50px;">{{i+1}}</td>
+          <td *ngFor="let column of columns" [hidden]="!column.display">{{getColumnValue(item, column)}}</td>
         </tr>
       </tbody>
     </table>
+    <!-- Pager -->
     <div class="row grid-footer">
       <div class="col-sm-5"><div>{{pageInfo}}</div></div>
       <div class="col-sm-7">

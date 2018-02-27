@@ -6,3 +6,28 @@
     margin-top:0px;
     float: right;
 }
+
+.sorting,
+.sorting_asc,
+.sorting_desc {
+    cursor: pointer;
+}
+.sorting::after{
+    content: "\f0ec";
+    font-family: FontAwesome;
+    float:right;
+    opacity: 0.2;
+    transform: rotate(90deg);
+}
+
+.sorting_asc::after{
+    content: "\f160";
+    font-family: FontAwesome;
+    float:right;
+}
+
+.sorting_desc::after{
+    content: "\f161";
+    font-family: FontAwesome;
+    float:right;
+}
