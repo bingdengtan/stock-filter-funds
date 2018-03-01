@@ -2,7 +2,7 @@ var pageBean = require('../utils/pageBean')
 var companyService = require("../services/companyService")
 
 exports.list = function(req, res, next){
-    let query = {};
+    let query = req.body.query;
     let pager = pageBean.pagerFromRequest(req);  
     companyService.list(query, pager, function(err, results){
         if(err){

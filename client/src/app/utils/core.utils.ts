@@ -19,12 +19,3 @@ export class CoreUtils {
         return val;
     }
 }
-
-export interface GridColumn {
-    display: boolean;
-    title: String;
-    filedName: String;
-    width: String;
-    columnFormat: any;
-    sort: any;  // sort object {enable: boolean, sortBy: string}, if the sortBy is null, then it will use the filed name to sort
-}

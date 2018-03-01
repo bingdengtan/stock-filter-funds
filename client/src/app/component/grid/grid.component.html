@@ -1,6 +1,28 @@
 <div class="box">
   <div class="box-body">
     <div class="row actionBar" style="text-align:right;margin:0px 10px 10px 10px;">
+      <!-- grid menus -->
+      <div class="actions pull-left">
+          <span *ngFor="let item of menus">
+            <span [ngClass]="item.subMenus.length > 0?'dropdown btn-group':''">
+              <!-- sigle menu -->
+              <span [hidden]="item.subMenus.length > 0">
+                  <button type="button" [hidden]="item.subMenus.length > 0" (click)="item.action()" class="btn btn-addon" [ngClass]="item.aClass" style="margin-right:2px;min-width:80px;">
+                    <i class="{{item.faIcon}}"></i><span style="margin-left:5px;">{{item.title}}</span>
+                  </button>
+              </span>
+              <!-- mutiple menus -->
+              <span [hidden]="item.subMenus.length <= 0">
+                  <button type="button" class="btn btn-default" [ngClass]="item.aClass" style="margin-right:2px;min-width:80px;color:#fff;" data-toggle="dropdown">
+                    {{item.title}}<i class="fa fa-caret-down" style="margin-left:5px;"></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li *ngFor="let item of item.subMenus" (click)="item.action();false"><a href="#">{{item.title}}</a></li>
+                  </ul>
+              </span>
+            </span>
+          </span>
+      </div>
       <div class="actions btn-group pull-right">
         <!-- Refresh button -->
         <div class="btn-group">
@@ -17,7 +39,7 @@
             <li *ngFor="let item of pageSizes" (click)="changePageSize(item);false"><a href="#">{{item}}</a></li>
           </ul>
         </div>
-        <!-- Columns display/hidden -->
+        <!-- Display/hidden Columns -->
         <div class="dropdown btn-group">
           <button type="button" class="btn btn-default" data-toggle="dropdown">
             <i class="fa fa-th-list"></i><i class="fa fa-caret-down" style="margin-left:5px;"></i>
@@ -34,21 +56,30 @@
       <!-- Search input text -->
       <div class="input-group col-md-3 col-sm-3 pull-right" style="margin-right:20px;" *ngIf="FTSearch.show">
         <span class="input-group-addon"><i class="fa fa-search"></i></span>
-        <input type="text" #searchBox (keyup)="ftSearch(searchBox.value)" class="form-control" placeholder="{{FTSearch.placeholder}}" />
+        <input type="text" [formControl]="searchTerm" class="form-control" placeholder="{{FTSearch.placeholder}}" />
       </div>
     </div>
     <!-- Grid -->
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
+          <th [hidden]="!selection.show" style="min-width:30px;max-width:30px;">
+            <input type="checkbox" [checked]="isSelectedAll" (click)="toggleSelectAll()" [hidden]="!selection.multiple" >
+          </th>
           <th [hidden] = "!showIndex" style="min-width:50px;max-width:50px;">{{indexTitle}}</th>
           <th *ngFor="let item of columns" [hidden]="!item.display" [ngClass]="getTHClass(item)" [ngStyle]="{'width':item.width}" (click)="sortColumn(item)">{{item.title}}</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of gridRows; let i=index">
+        <tr *ngFor="let item of gridRows;let i = index;">
+          <td [hidden]="!selection.show" style="min-width:30px;max-width:30px;">
+            <input type="checkbox" value="{{item['_id']}}" [checked]="selectedIds.indexOf(item['_id']) > -1" (click)="toggleSelection(item)">
+          </td>
           <td [hidden] = "!showIndex" style="min-width:50px;max-width:50px;">{{i+1}}</td>
-          <td *ngFor="let column of columns" [hidden]="!column.display">{{getColumnValue(item, column)}}</td>
+          <td *ngFor="let column of columns" [hidden]="!column.display">
+            <span [hidden]="column.click">{{getColumnValue(item, column)}}</span>
+            <a [hidden]="!column.click" href="#" (click)="column.click(item);false">{{getColumnValue(item, column)}}</a>
+          </td>
         </tr>
       </tbody>
     </table>

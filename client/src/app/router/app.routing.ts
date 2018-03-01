@@ -9,8 +9,8 @@ import { StockComponent } from '../pages/stock/stock.component';
 @NgModule({
   imports: [
     RouterModule.forRoot([
-      { path: '', redirectTo: 'company', pathMatch: 'full' },
-      { path: 'company', component: HomeComponent },
+      { path: '', redirectTo: 'companies', pathMatch: 'full' },
+      { path: 'companies', component: HomeComponent },
       { path: 'fund', component: FundComponent },
       { path: 'stock', component: StockComponent }
     ])

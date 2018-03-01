@@ -7,11 +7,11 @@
       <li class="active">{{title}}</li>
     </ol>
   </section>
-
   <!-- Main content -->
   <section class="content">
-    <app-grid 
-      [columns]="gridColumns" 
+    <app-grid #gridComponent
+      [columns]="gridColumns"
+      [menus]="gridActions"
       [showIndex]="true" 
       [indexTitle]="'序号'" 
       [pageSize]=10 
@@ -19,7 +19,8 @@
       [resetUrl]="resetUrl" 
       [sortBy]="'name_ping_yin'" 
       [orderBy]="'asc'"
-      [FTSearch]="{'show': true, 'placeholder': '搜索'}"
+      [FTSearch]="{'show': true, 'placeholder': '搜索', 'forNames': ['name_ping_yin','name']}"
+      [selection]="{'show': false, 'multiple': true}"
     >
     </app-grid>
   </section>

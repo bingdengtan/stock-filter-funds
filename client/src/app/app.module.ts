@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './router/app.routing';
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { CoreUtils } from './utils/core.utils';
 import { FundComponent } from './pages/fund/fund.component';
 import { StockComponent } from './pages/stock/stock.component';
 import { GridComponent } from './component/grid/grid.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -32,12 +34,15 @@ import { GridComponent } from './component/grid/grid.component';
   imports: [
     HttpModule,
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [
     CompanyService,
     CoreService,
-    CoreUtils
+    CoreUtils,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
