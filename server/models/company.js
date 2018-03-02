@@ -5,6 +5,7 @@ var CompanySchema = new schema(
     {
         code: {type: String, required: true},
         name: {type: String, required: true},
+        name_ping_yin: {type: String, required: true},
         creation_date: {type: Date},
         creation_by: {type: String},
         last_updated_date: {type: Date},

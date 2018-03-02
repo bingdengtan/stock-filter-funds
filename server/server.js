@@ -21,11 +21,13 @@ var port = process.env.PORT || 8080;
 console.log('Listening port number: ' + port);
 
 //Set up router
-var company = require('./routes/company')
+var company = require('./routes/company');
+var fund = require('./routes/fund');
 
 app.use("/", express.static(path.join(__dirname,'..','client/dist')))
 mount(app);
 app.use('/company', company);
+app.use('/fund', fund);
 
 app.listen(port);
 console.log('Server is running...');

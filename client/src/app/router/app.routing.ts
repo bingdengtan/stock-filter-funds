@@ -11,7 +11,7 @@ import { StockComponent } from '../pages/stock/stock.component';
     RouterModule.forRoot([
       { path: '', redirectTo: 'companies', pathMatch: 'full' },
       { path: 'companies', component: HomeComponent },
-      { path: 'fund', component: FundComponent },
+      { path: 'funds', component: FundComponent },
       { path: 'stock', component: StockComponent }
     ])
   ],

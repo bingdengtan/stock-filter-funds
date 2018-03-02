@@ -10,6 +10,20 @@
   
     <!-- Main content -->
     <section class="content">
+      <app-grid #gridComponent
+        [columns]="gridColumns"
+        [menus]="gridActions"
+        [showIndex]="true" 
+        [indexTitle]="'序号'" 
+        [pageSize]=10 
+        [pageSizes]="[10,20,50,100]" 
+        [resetUrl]="resetUrl" 
+        [sortBy]="'name_ping_yin'" 
+        [orderBy]="'asc'"
+        [FTSearch]="{'show': true, 'placeholder': '搜索基金名称/代码', 'forNames': ['name_ping_yin','name','code']}"
+        [selection]="{'show': false, 'multiple': true}"
+      >   
+      </app-grid>   
     </section>
     <!-- /.content -->
   </div>

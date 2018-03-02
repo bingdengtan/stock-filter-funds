@@ -4,6 +4,10 @@ import {FormControl} from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
+declare var Pace: any;
+// declare var jquery: any;
+// declare var $: any;
+
 export interface GridColumn {
   display: boolean;
   title: String;
@@ -62,6 +66,7 @@ export class GridComponent implements OnInit {
   start = 0; last = 0; total = 0;
   pageInfo: String = '';
   searchTerm: FormControl;
+  loading = false;
 
   constructor(public http: Http) {
     this.searchTerm = new FormControl();
@@ -82,7 +87,8 @@ export class GridComponent implements OnInit {
   }
 
   loadGrid(pageNumber: number): void {
-    console.log('load grid...');
+    // Pace.restart();
+    this.loading = true;
     if (this.grid) {
       if (pageNumber < 1 || pageNumber > this.grid.pageCount) {
         return;
@@ -97,6 +103,7 @@ export class GridComponent implements OnInit {
         this.resetPager();
       })
       .catch(e => {
+        this.loading = false;
         console.log(e);
       });
   }
@@ -109,6 +116,9 @@ export class GridComponent implements OnInit {
     // uncheck the selected all checkbox
     this.isSelectedAll = false;
     this.selectedIds = [];
+
+    // hiden the loading
+    this.loading = false;
 
     // page information
     if (this.grid.total <= 0) {
@@ -138,6 +148,10 @@ export class GridComponent implements OnInit {
       showNextPages: Math.ceil(this.grid.pageNumber / this.pages) * this.pages < this.grid.pageCount,
       curPages: curPages
     };
+
+    // window.setTimeout(() => {
+    //   Pace.stop();
+    // }, 500);
   }
 
   getTHClass(th): string {
@@ -179,6 +193,7 @@ export class GridComponent implements OnInit {
       .debounceTime(400)
       .distinctUntilChanged()
       .switchMap( term => {
+        this.loading = true;
         return this.http.post(this.resetUrl, this.getPostData(1));
       })
       .subscribe( response => {

@@ -23,10 +23,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     window.dispatchEvent(new Event('resize'));
     this.initGrid();
-    // this.gridColumns.pu
-    this.companyService.getCompanies().then(response => {
-      this.companies = response.results;
-    });
   }
 
   menuActionNew(): void {
