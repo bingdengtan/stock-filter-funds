@@ -81,16 +81,18 @@ export class GridComponent implements OnInit {
   getColumnValue(row: any, column: any): string {
     let val = row[column.filedName];
     if (column.columnFormat) {
-      val = column.columnFormat(val);
+      val = column.columnFormat(row, val);
     }
     return val;
   }
 
   loadGrid(pageNumber: number): void {
+    console.log(this.resetUrl);
     // Pace.restart();
     this.loading = true;
     if (this.grid) {
-      if (pageNumber < 1 || pageNumber > this.grid.pageCount) {
+      if ((pageNumber < 1 || pageNumber > this.grid.pageCount) && this.grid.pageCount > 0 ) {
+        this.loading = false;
         return;
       }
     }

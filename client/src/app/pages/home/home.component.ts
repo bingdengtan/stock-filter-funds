@@ -41,6 +41,10 @@ export class HomeComponent implements OnInit {
     console.log(row);
   }
 
+  getDateFormat(row, val): String {
+    return this.coreUtils.getDateFormat(val);
+  }
+
   initGrid(): void {
     this.resetUrl = this.companyService.resetUrl + '/list';
     let nameCol: GridColumn = {title: '基金公司', filedName: 'name', width: '40%', columnFormat: null, display: true,
@@ -48,12 +52,12 @@ export class HomeComponent implements OnInit {
       sort: {enable: true, sortBy: 'name_ping_yin'}};
     this.gridColumns.push(nameCol);
 
-    nameCol = {title: '创建时间', filedName: 'creation_date', width: '30%', columnFormat: this.coreUtils.getDateFormat, display: true,
+    nameCol = {title: '创建时间', filedName: 'creation_date', width: '30%', columnFormat: this.getDateFormat.bind(this), display: true,
       click: null,
       sort: {enable: true, sortBy: 'creation_date'}};
     this.gridColumns.push(nameCol);
 
-    nameCol = {title: '更新时间', filedName: 'last_updated_date', width: '30%', columnFormat: this.coreUtils.getDateFormat, display: true,
+    nameCol = {title: '更新时间', filedName: 'last_updated_date', width: '30%', columnFormat: this.getDateFormat.bind(this), display: true,
       click: null,
       sort: {enable: true, sortBy: 'last_updated_date'}};
     this.gridColumns.push(nameCol);

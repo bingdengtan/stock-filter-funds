@@ -23,11 +23,15 @@ console.log('Listening port number: ' + port);
 //Set up router
 var company = require('./routes/company');
 var fund = require('./routes/fund');
+var fundStock = require('./routes/fundStock')
+var stock = require('./routes/stock')
 
 app.use("/", express.static(path.join(__dirname,'..','client/dist')))
 mount(app);
 app.use('/company', company);
 app.use('/fund', fund);
+app.use('/fundStock', fundStock);
+app.use('/stock', stock);
 
 app.listen(port);
 console.log('Server is running...');

@@ -19,6 +19,8 @@ import { GridComponent } from './component/grid/grid.component';
 import { CompanyService } from './services/companyService';
 import { CoreService } from './services/core.service';
 import { FundService } from './services/fundService';
+import { FundStockService } from './services/fundStockService';
+import { StockService } from './services/stockService';
 import { CoreUtils } from './utils/core.utils';
 
 @NgModule({
@@ -44,6 +46,8 @@ import { CoreUtils } from './utils/core.utils';
   providers: [
     CompanyService,
     FundService,
+    StockService,
+    FundStockService,
     CoreService,
     CoreUtils,
     {provide: LocationStrategy, useClass: HashLocationStrategy}

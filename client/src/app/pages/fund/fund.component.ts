@@ -40,6 +40,10 @@ export class FundComponent implements OnInit {
     console.log(row);
   }
 
+  getDateFormat(row, val): String {
+    return this.coreUtils.getDateFormat(val);
+  }
+
   initGrid(): void {
     this.resetUrl = this.fundService.resetUrl + '/list';
     let nameCol: GridColumn = {title: '基金名称', filedName: 'name', width: '30%', columnFormat: null, display: true,
@@ -57,12 +61,12 @@ export class FundComponent implements OnInit {
       sort: {enable: false, sortBy: 'company_name'}};
     this.gridColumns.push(nameCol);
 
-    nameCol = {title: '创建时间', filedName: 'creation_date', width: '30%', columnFormat: this.coreUtils.getDateFormat, display: false,
+    nameCol = {title: '创建时间', filedName: 'creation_date', width: '30%', columnFormat: this.getDateFormat.bind(this), display: false,
       click: null,
       sort: {enable: true, sortBy: 'creation_date'}};
     this.gridColumns.push(nameCol);
 
-    nameCol = {title: '更新时间', filedName: 'last_updated_date', width: '30%', columnFormat: this.coreUtils.getDateFormat, display: false,
+    nameCol = {title: '更新时间', filedName: 'last_updated_date', width: '30%', columnFormat: this.getDateFormat.bind(this), display: false,
       click: null,
       sort: {enable: true, sortBy: 'last_updated_date'}};
     this.gridColumns.push(nameCol);

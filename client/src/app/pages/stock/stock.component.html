@@ -13,20 +13,40 @@
   
     <!-- Main content -->
     <section class="content">
-      <div class="row" style="padding: 15px;padding-top:0px;">
+      <div class="row search-stock">
         <div class="input-group col-xs-10 col-md-8 pull-left">
-          <span class="input-group-addon"><i class="fa fa-search"></i></span>
-          <input id="typeahead-http" type="text" class="form-control" style="display: inline;" [class.is-invalid]="searchFailed" [(ngModel)]="term" [ngbTypeahead]="search" placeholder="请输入股票代码或名称" />
+          <!-- <span class="input-group-addon"><i class="fa fa-search"></i></span> -->
+          <input id="typeahead-http" type="text" 
+            class="form-control" style="display: inline;"
+            [class.is-invalid]="searchFailed"
+            [(ngModel)]="term"
+            [ngbTypeahead]="search"
+            (focus)="focus$.next($event.target.value)"
+            (click)="click$.next($event.target.value)"
+            #instance="ngbTypeahead"
+            placeholder="请输入股票代码或名称"
+          />
         </div>
-        <div class="col-xs-2 col-md-4 pull-right" style="margin-top:5px;">
-          <i *ngIf="searching" class="fa fa-spinner fa-spin"></i>
-          <div class="invalid-feedback" *ngIf="false">对不起，查找不到</div>
-        </div>
-      </div>
-      <div class="box">
-        <div class="box-body">
 
-        </div>
+        <div>
+          <a class="btn btn-social-icon" (click)="showFunds()"><i class="fa fa-search"></i></a>
+        </div>        
+      </div>
+      <div>
+        <app-grid #gridComponent
+          [columns]="gridColumns"
+          [menus]="gridActions"
+          [showIndex]="true" 
+          [indexTitle]="'序号'" 
+          [pageSize]=10
+          [pageSizes]="[10,20,50,100]" 
+          [resetUrl]="resetUrl" 
+          [sortBy]="'weight'" 
+          [orderBy]="'desc'"
+          [FTSearch]="{'show': false, 'placeholder': '搜索', 'forNames': ['name_ping_yin','name']}"
+          [selection]="{'show': false, 'multiple': true}"
+        >    
+        </app-grid>       
       </div>
     </section>
     <!-- /.content -->
