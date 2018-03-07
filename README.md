@@ -1,4 +1,4 @@
-# Angular Nodejs starter
+# stock-filter-funds
 
-This project is using Angular + Nodejs Express + MongoDB + AdminLTE
+查询某支股票都有哪些基金持仓
 
