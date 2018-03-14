@@ -9,9 +9,14 @@ var pageAggregateQuery = function (page, pageSize, Model, aggregate, queryParams
     };
     async.parallel({
         count: function (done) {
-            Model.count(queryParams).exec(function (err, count) {
-                done(err, count);
+            if (sortParamsBefore && sortParamsBefore != undefined) aggregate.unshift({"$sort":sortParamsBefore});
+            if (queryParams && queryParams != undefined) aggregate.unshift({"$match":queryParams});
+            Model.aggregate(aggregate).exec(function (err, doc) {
+                done(err, doc.length);
             });
+            // Model.count(queryParams).exec(function (err, count) {
+            //     done(err, count);
+            // });
         },
         records: function (done) {
             if (sortParamsBefore && sortParamsBefore != undefined) aggregate.unshift({"$sort":sortParamsBefore});
